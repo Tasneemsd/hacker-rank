@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #strengthMeter{
+            width:100%;
+            height: 20px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        #strengthBar{
+            height:100%;
+            width:0%;
+           transition: 0.3em;
+
+        }
+    </style>
+</head>
+<body>
+    <label>Password:</label>
+    <input type="password" id="passIn" oninput="checkPassword()">
+    <div id="strengthMeter">
+        <div id="strengthBar">
+
+        </div>
+    </div>
+
+<p id="strengthText">Strength: Weak</p>
+
+<script>
+    function checkPassword(){
+        const password = document.getElementById("passIn");
+        const bar = document.getElementById("strenghtBar");
+        const text = document.getElementById("strengthText");
+
+        let strenght = 0;
+        if(password.length > 0) strenght += 20;
+        if(password.length >=8) strenght += 30;
+       if(/[A-Z]/.test(password)) strenght +=20;
+       if(/[0-9]/.test(password)) strenght +=20;
+       if(/[^A-Z0-9a-z]/.test(password)) strenght +=10;
+
+       if(strength < 50){
+        bar.style.backgroundColor = "red";
+        text.textContent = "Strength: Weak";
+       
+       } else if(strength > 80){
+        bar.style.backgroundColor = "orange";
+        text.textContent = "Strength: Medium";
+   
+       }
+       else{
+        bar.style.backgroundColor = "green";
+        text.textContent = "Strength: Strong!";
+        
+       }
+
+    }
+    
+    
+</script>
+    
+</body>
+</html>
